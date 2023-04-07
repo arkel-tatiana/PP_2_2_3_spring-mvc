@@ -55,29 +55,22 @@ public class AppConfig {
             properties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
             properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
             emf.setJpaProperties(properties);
-            emf.setPersistenceProviderClass(HibernatePersistenceProvider.class);
+        //    emf.setPersistenceProviderClass(HibernatePersistenceProvider.class);
 
             return emf;
         }
 
         @Bean
-        public JpaTransactionManager transactionManager() {
+        public JpaTransactionManager transactionManager(EntityManagerFactory emf) {
             JpaTransactionManager transactionManager = new JpaTransactionManager();
-            transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+            transactionManager.setEntityManagerFactory(emf);
             return transactionManager;
         }
-        //public PlatformTransactionManager transactionManager(EntityManagerFactory emf)
-        //{
-        //    JpaTransactionManager transactionManager = new JpaTransactionManager();
-        //    transactionManager.setEntityManagerFactory(emf);
-//
-  //          return transactionManager;
-    //    }
 
-    //    @Bean
-      //  public PersistenceExceptionTranslationPostProcessor exceptionTranslation()
-     //   {
-     //       return new PersistenceExceptionTranslationPostProcessor();
-     //   }
+        @Bean
+        public PersistenceExceptionTranslationPostProcessor exceptionTranslation()
+        {
+            return new PersistenceExceptionTranslationPostProcessor();
+        }
 
 }

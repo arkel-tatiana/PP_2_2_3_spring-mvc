@@ -7,6 +7,7 @@ import web.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 @Repository
@@ -19,7 +20,6 @@ public class UserDaoImpl implements UserDao{
    // }
 
     @Override
-    @SuppressWarnings("unchecked")
     public List<User> getUsers() {
         TypedQuery<User> query = entityManager.createQuery("from User", User.class);
         return query.getResultList();
@@ -27,14 +27,30 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public void saveUser(User userSave) {
-
-      //  User user55 = new User(22, "uiuiui", "hhhhh", "kkkkk");
-        System.out.println(userSave);
-       // System.out.println(user55);
         entityManager.persist(userSave);
-      //  entityManager.close();
+    }
+
+    @Override
+    public void deleteUser(Long idDelete) {
+
+        Query query = entityManager.createQuery("delete from User where id =: id_user");
+        query.setParameter("id_user", idDelete).executeUpdate();
+    }
+
+    @Override
+    public User findUser(Long idFind) {
+        User findUser = entityManager.find(User.class, idFind);
+        return findUser;
+      //  TypedQuery<User> query = entityManager.createQuery("from User where id =: id_user", User.class);
+      //  return query.setParameter("id_user", idFind).getSingleResult();
+    }
+
+    @Override
+    public void updateUser(User userUpdate) {
+
+        System.out.println(userUpdate);
+       entityManager.merge(userUpdate);
     }
 
 }

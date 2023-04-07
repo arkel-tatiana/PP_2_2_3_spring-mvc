@@ -2,15 +2,13 @@ package web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import web.model.User;
 import web.service.UserService;
-import web.service.UserServiceImpl;
 
-import java.util.List;
 
 @Controller
 public class UserController {
@@ -24,9 +22,10 @@ public class UserController {
 
     @RequestMapping(value = "/")
     public String showAllUsers(ModelMap modelUser) {
-      //   userService.saveUser(new User(22, "22@gg", "ivan","ivanov"));
-    //    userService.saveUser(new User("kirill","krilov","33@gg", 33));
-     //   userService.saveUser(new User("sawa","semenov","44@gg", 44));
+      //  userService.saveUser(new User(11, "прпрпр@gg", "даша","дмитриева"));
+        // userService.saveUser(new User(22, "22@gg", "ваня","иванов"));
+       // userService.saveUser(new User(33,"sdds@fgfg","саша", "попов"));
+       // userService.saveUser(new User(44,"sem@enov","дима", "петров"));
          modelUser.addAttribute("userList", userService.getUsers());
         return "users";
     }
@@ -38,9 +37,23 @@ public class UserController {
     }
     @RequestMapping(value = "/saveUser")
     public String saveUser(@ModelAttribute("userList") User userSave) {
-        System.out.println("jjj");
         userService.saveUser(userSave);
         return "redirect:/";
     }
 
+    @RequestMapping(value = "/{id}/deleteUser")
+    public String deleteUser(@PathVariable("id") Long idDelete) {
+        userService.deleteUser(idDelete);
+        return "redirect:/";
+    }
+    @RequestMapping(value = "/{id}/editUser")
+    public String editUser(Model modelUser, @PathVariable("id") Long idEdit) {
+        modelUser.addAttribute("userList", userService.findUser(idEdit));
+        return "editUser";
+    }
+    @RequestMapping(value = "/{id}/updateUser")
+    public String updateUser(@ModelAttribute("userList") User userUpdate, @PathVariable("id") Long idUpdate) {
+        userService.updateUser(userUpdate);
+        return "redirect:/";
+    }
 }

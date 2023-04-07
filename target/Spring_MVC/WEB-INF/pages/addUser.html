@@ -1,32 +1,44 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>ADD USER</title>
 </head>
 <body>
-<h1>Info User</h1>
+<h1>Добавить пользователя</h1>
 <br><br>
 <form th:method="POST" th:action="@{/saveUser}" th:object="${userList}">
-    <div>
-        <label for="firstName">Name</label>
-        <input type="text" th:field="*{firstName}" id="firstName"/>
-        <br>
+        <label style="background-color:lightgreen; font-size: 15px; margin-right: 20px;"
+               for="firstName">Имя</label>
+        <input type="text" th:field="*{firstName}" id="firstName"
+               style="background-color:lightblue; font-size: 15px"
+               />
+        <br><br>
 
-        <label for="lastName">lastName</label>
-        <input type="text" th:field="*{lastName}" id="lastName"/>
-        <br>
+        <label style="background-color:lightgreen; font-size: 15px; margin-right: 20px;"
+               for="lastName" >Фамилия</label>
+        <input type="text" th:field="*{lastName}" id="lastName"
+               style="background-color:lightblue; font-size: 15px"/>
+        <br><br>
 
-        <label for="age">Age</label>
-        <input type="text" th:field="*{age}" id="age"/>
-        <br>
+        <label style="background-color:lightgreen; font-size: 15px; margin-right: 20px;"
+               for="age">Возраст </label>
+        <input type="text" th:field="*{age}" id="age"
+               style="background-color:lightblue; font-size: 15px"/>
+        <br><br>
 
+        <label style="background-color:lightgreen; font-size: 15px; margin-right: 20px;"
+               for="email">Эл почта</label>
+        <input type="text" th:field="*{email}" id="email"
+               style="background-color:lightblue; font-size: 15px"/>
+        <br><br><br>
 
-    </div>
-    <input type="submit" value="Save user" />
+    <input type="submit" value="Добавить пользователя"
+           style="background-color: mediumpurple; font-size: 15px; border: black solid 3px; text-align: center;"/>
 </form>
-<br><br>
+
 
 </body>
 </html>

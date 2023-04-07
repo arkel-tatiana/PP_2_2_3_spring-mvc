@@ -80,10 +80,11 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "firstName='" + firstName + '\'' +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", age='" + age + '\'' +
-                ", email=" + email +
+                ", email='" + email + '\'' +
+                ", age=" + age +
                 '}';
     }
 }
