@@ -14,10 +14,7 @@ import java.util.List;
 public class UserDaoImpl implements UserDao{
     @PersistenceContext
     private EntityManager entityManager;
-//  @Override
-  //  public void add(User user) {
-  //      sessionFactory.getCurrentSession().save(user);
-   // }
+
 
     @Override
     public List<User> getUsers() {
@@ -28,7 +25,7 @@ public class UserDaoImpl implements UserDao{
 
     @Override
     public void saveUser(User userSave) {
-        entityManager.persist(userSave);
+       entityManager.persist(userSave);
     }
 
     @Override
@@ -42,14 +39,10 @@ public class UserDaoImpl implements UserDao{
     public User findUser(Long idFind) {
         User findUser = entityManager.find(User.class, idFind);
         return findUser;
-      //  TypedQuery<User> query = entityManager.createQuery("from User where id =: id_user", User.class);
-      //  return query.setParameter("id_user", idFind).getSingleResult();
     }
 
     @Override
     public void updateUser(User userUpdate) {
-
-        System.out.println(userUpdate);
        entityManager.merge(userUpdate);
     }
 
