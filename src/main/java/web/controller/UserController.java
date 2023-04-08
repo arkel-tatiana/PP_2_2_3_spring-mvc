@@ -22,11 +22,7 @@ public class UserController {
 
     @RequestMapping(value = "/")
     public String showAllUsers(ModelMap modelUser) {
-      //  userService.saveUser(new User(11, "прпрпр@gg", "даша","дмитриева"));
-        // userService.saveUser(new User(22, "22@gg", "ваня","иванов"));
-       // userService.saveUser(new User(33,"sdds@fgfg","саша", "попов"));
-       // userService.saveUser(new User(44,"sem@enov","дима", "петров"));
-         modelUser.addAttribute("userList", userService.getUsers());
+        modelUser.addAttribute("userList", userService.getUsers());
         return "users";
     }
     @RequestMapping(value = "/addNewUser")
