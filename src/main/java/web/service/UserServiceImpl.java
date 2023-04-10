@@ -4,14 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import web.dao.UserDao;
-import web.dao.UserDaoImpl;
 import web.model.User;
 
 import java.util.List;
 @Service
 public class UserServiceImpl implements UserService{
 
-    private UserDao userDao;
+    private final UserDao userDao;
     @Autowired
     public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
@@ -31,7 +30,7 @@ public class UserServiceImpl implements UserService{
     @Transactional()
     @Override
     public void deleteUser(Long id) { userDao.deleteUser(id);}
-    @Transactional()
+    @Transactional(readOnly = true)
     @Override
     public User findUser(Long id) {
         return userDao.findUser(id);

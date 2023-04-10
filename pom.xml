@@ -79,6 +79,12 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>5.4.22.Final</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot</artifactId>
+            <version>3.0.4</version>
+        </dependency>
 
 
 

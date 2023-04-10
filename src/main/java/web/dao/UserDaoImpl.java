@@ -1,10 +1,7 @@
 package web.dao;
 
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import web.model.User;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -37,8 +34,7 @@ public class UserDaoImpl implements UserDao{
 
     @Override
     public User findUser(Long idFind) {
-        User findUser = entityManager.find(User.class, idFind);
-        return findUser;
+       return entityManager.find(User.class, idFind);
     }
 
     @Override
